@@ -1,16 +1,7 @@
-import { Counter } from "./Counter.js";
+import '../tailwind.css';
 
-export default function Page() {
-  return (
-    <>
-      <h1>My Vike app</h1>
-      <p>This page is:</p>
-      <ul>
-        <li>Rendered to HTML.</li>
-        <li>
-          Interactive. <Counter />
-        </li>
-      </ul>
-    </>
-  );
+export default function Page(){
+
+
+    return(<h1>Hello world</h1>)
 }
