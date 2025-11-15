@@ -1,7 +1,7 @@
 import '../tailwind.css';
 
 
-import { createSignal } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 import TitleH2 from '../../components/title/title-h2-bold';
 import PrimaryButton from '../../components/button/PrimaryButton';
 
@@ -10,6 +10,7 @@ import './style.css';
 export default function Page(){
 
     const [count, setCount] = createSignal(0);
+    createEffect(() => console.log('Hello world', count()))
 
     return(
     <>
