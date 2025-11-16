@@ -16,7 +16,7 @@ export function TitleH2({text, color}:TitleH2Props){
         emerald: 'text-emerald-500',
     };
 
-    return(<h2 class={`font-bold ${colorClasses[color]} text-5xl m-2 p-2`}>{text}</h2>)
+    return(<h2 class={`font-bold ${colorClasses[color]} text-5xl m-1 p-1`}>{text}</h2>)
 }
 
 export default TitleH2;

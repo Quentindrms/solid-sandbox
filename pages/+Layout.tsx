@@ -1,5 +1,6 @@
 import { type JSX } from "solid-js";
 import NavLinks from "../components/navLinks/NavLinks"
+import BrandName from "../components/brandName/BrandName";
 
 export default function Layout(props: { children?: JSX.Element }) {
     return (
@@ -12,7 +13,8 @@ export default function Layout(props: { children?: JSX.Element }) {
 
 function Sidebar() {
     return (
-        <div class='w-64 flex flex-col h-full bg-gray-100 border-r border-gray-200'>
+        <div class='w-64 flex flex-col h-full bg-zinc-50 border-r border-gray-200'>
+            <BrandName />
             <NavLinks />
         </div>
     )

@@ -1,0 +1,10 @@
+
+export default function LoremIpsumMedium() {
+
+    return (
+        <p> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin cursus ipsum commodo pharetra. Aliquam dictum euismod lacus, sed iaculis est volutpat vel. In ac mi eget nulla tristique iaculis non vitae nisi. Etiam justo arcu, eleifend at felis non, placerat pretium velit. In hac habitasse platea dictumst. Duis malesuada ultrices iaculis. Duis congue lacus nunc, sed gravida lorem semper ac. Aenean posuere nisi eu felis ultrices, nec fringilla sem auctor. Curabitur imperdiet, nunc nec molestie pellentesque, mauris magna condimentum neque, molestie venenatis sapien velit id orci. Nullam sed augue sapien. Aenean suscipit sodales convallis. Sed efficitur quis ante sit amet rhoncus. Sed at imperdiet ipsum. Integer quis porta risus.
+
+            Ut ornare nisl a venenatis placerat. Sed pharetra turpis tristique risus lobortis ultricies. Nullam vel metus id risus dapibus mattis. Ut placerat blandit aliquam. Donec sagittis condimentum diam, ac dignissim ante sodales non. Praesent rutrum id massa vitae sodales. Proin at arcu non dui vulputate iaculis. Integer a imperdiet tortor. Nulla sed quam vitae elit ornare blandit. Phasellus semper vel nunc eget mattis. Nam dapibus, odio ac semper pulvinar, erat velit pulvinar ante, id aliquam massa eros vitae magna. Cras quis quam mollis, convallis nunc sed, ornare metus. Nullam lobortis leo ut odio efficitur, posuere convallis eros pharetra. Curabitur laoreet mauris at efficitur lacinia. Ut dignissim nulla lorem, vel rhoncus orci scelerisque a. Morbi vel magna sollicitudin, pretium lorem ut, convallis neque.
+        </p>)
+}

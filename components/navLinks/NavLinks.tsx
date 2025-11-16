@@ -41,14 +41,14 @@ export default function NavLinks() {
             {linkList.map((link, index) => {
                 if (index % 2 == 0) {
                     return (
-                        <div class='bg-gray-300 w-full text-center'>
-                            <a class='text-2xl' href={link.link}>{link.name}</a>
+                        <div class='bg-zinc-100 w-full text-center p-1'>
+                            <a class='text-4xl' href={link.link}>{link.name}</a>
                         </div>
                     )
                 }
                 else {return(
-                    <div class='bg-gray-100 w-full text-center'>
-                        <a class='text-2xl' href={link.link}>{link.name}</a>
+                    <div class='bg-zinc-50 w-full text-center p-1'>
+                        <a class='text-4xl' href={link.link}>{link.name}</a>
                     </div>
                 )
                 }
