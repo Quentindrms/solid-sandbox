@@ -1,6 +1,7 @@
 import { type JSX } from "solid-js";
 import NavLinks from "../components/navLinks/NavLinks"
 import BrandName from "../components/brandName/BrandName";
+import './tailwind.css';
 
 export default function Layout(props: { children?: JSX.Element }) {
     return (

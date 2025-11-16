@@ -7,8 +7,8 @@ export default function NavLinks() {
 
     let linkList: linkList[] = [
         {
-            name: 'Lien 1',
-            link: '#',
+            name: 'Formulaire',
+            link: '/form',
         },
         {
             name: 'Lien 2',
