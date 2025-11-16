@@ -1,6 +1,13 @@
+import { HelloForm } from "../../components/form/HelloForm";
+import TitleH2 from "../../components/title/title-h2-bold";
 
 export default function Form(){
 
 
-    return(<h1>Hello Form !</h1>)
+    return(
+    <>
+        <TitleH2 color="emerald" text="Hello form !"/>
+        <HelloForm />
+    </>
+    )
 }
