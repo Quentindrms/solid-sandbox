@@ -1,5 +1,5 @@
-import { HelloForm } from "../../components/form/HelloForm";
-import TitleH2 from "../../components/title/title-h2-bold";
+import { HelloForm } from "../../../components/form/HelloForm";
+import TitleH2 from "../../../components/title/title-h2-bold";
 
 export default function Form(){
 

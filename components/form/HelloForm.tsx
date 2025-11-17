@@ -2,22 +2,26 @@ import { createSignal } from "solid-js";
 import { FormInput } from "./formElement/FormInput";
 import { FormInputSubmit } from "./formElement/FormInputSubmit";
 import { FormLabel } from "./formElement/FormLabel";
+import ElementsTile from "../tile/ElementsTile";
 
-type formDataType = {
-    nom: string,
-    prenom: string,
-    mail: string,
-}
+import type { HelloFormDataType } from "../../type/formDataType";
+import FromTextField from "./formElement/FormTextField";
+import FormTextField from "./formElement/FormTextField";
+
 
 export function HelloForm() {
 
-    const [formData, setFormData] = createSignal<formDataType>({
+    const [formData, setFormData] = createSignal<HelloFormDataType>({
         nom: '',
         prenom: '',
         mail: '',
+        age: '',
+        description: '', 
     });
 
-    const handleInputChange = (field: keyof formDataType) => (e: Event) => {
+    const [isSubmitted, setIsSubmitted] = createSignal(false);
+
+    const handleInputChange = (field: keyof HelloFormDataType) => (e: Event) => {
         const target = e.target as HTMLInputElement;
         setFormData(prev => ({
             ...prev,
@@ -25,27 +29,36 @@ export function HelloForm() {
         }));
     };
 
-    const handleSubmit = (e:Event) => {
+    const handleSubmit = (e: Event) => {
         e.preventDefault();
-        console.log('Données transmises');
-        console.log(formData().nom)
+        setIsSubmitted(true);
     }
     return (
-        <>
-        <form class='flex flex-col max-w-lg' onSubmit={(e: Event) => e.preventDefault()}>
-            <FormLabel htmlFor="nom" text="Nom" />
-            <FormInput name="nom" onChange={handleInputChange('nom')} type="text" />
-            <FormLabel htmlFor="prenom" text="Prénom" />
-            <FormInput name="prenom" onChange={handleInputChange('prenom')} type="text" />
-            <FormLabel htmlFor="prenom" text="Adresse mail" />
-            <FormInput name="mail" onChange={handleInputChange('mail')} type="email" />
-            <FormInputSubmit name="btn submit" text="Soumettre" onClick={handleSubmit} />
-        </form>
-        <p>{formData().nom}</p>
-        <p>{formData().prenom}</p>
-        <p>{formData().mail}</p>
-        </>
+        <div class='flex flex-row gap-15'>
+            <form class='flex flex-col w-md max-w-lg gap-1' onSubmit={(e: Event) => handleSubmit(e)} method='get' action='/form/submit-hello-form'>
+                <FormLabel htmlFor="nom" text="Nom" />
+                <FormInput name="nom" onChange={handleInputChange('nom')} type="text" require={true}/>
+                <FormLabel htmlFor="prenom" text="Prénom" />
+                <FormInput name="prenom" onChange={handleInputChange('prenom')} type="text" require={true}/>
+                <FormLabel htmlFor="mail" text="Adresse mail" />
+                <FormInput name="mail" onChange={handleInputChange('mail')} type="email" require={true} />
+                <FormLabel htmlFor="age" text="Votre age" />
+                <FormInput name="age" onChange={handleInputChange('age')} type="text" require={true}/>
+                <FormLabel htmlFor="description" text="Description" />
+                <FormTextField onChange={handleInputChange('description')}/>
 
-    )
-
-}
+                <FormInputSubmit name="" text="Soumettre" onClick={() => console.log('click')} />
+            </form>
+            {isSubmitted() && (
+                <>
+                    <ElementsTile flexDirection="col" gap={1}>
+                        <p>Nom : {formData().nom}</p>
+                        <p>Prénom : {formData().prenom}</p>
+                        <p>Mail : {formData().mail}</p>
+                        <p>Age : {formData().age}</p>
+                        <p>Description : {formData().description}</p>
+                    </ElementsTile>
+                </>
+            )}
+        </div>
+    )}
