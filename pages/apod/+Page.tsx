@@ -19,9 +19,8 @@ export default function Apod() {
                 <TextTile>
                     {apod.explanation}
                 </TextTile>
-
                 <TextTile>
-                    Publish date : {apod.date}
+                    Publish date : <span class='font-bold text-emerald-700'>{apod.date}</span>
                 </TextTile>
             </div>
         </div>

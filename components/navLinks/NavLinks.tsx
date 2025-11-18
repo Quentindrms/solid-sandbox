@@ -15,8 +15,8 @@ export default function NavLinks() {
             link: '/apod',
         },
         {
-            name: 'Lien 3',
-            link: '#',
+            name: 'To do list',
+            link: '/to-do',
         },
         {
             name: 'Lien 4',

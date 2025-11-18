@@ -8,6 +8,7 @@ export default {
   // https://vike.dev/head-tags
   title: "Solid Sandbox",
   description: "Une démonstration de force sous solidJS",
+  prerender: true,
 
   extends: [vikeSolid],
 } satisfies Config;

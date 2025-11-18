@@ -2,7 +2,6 @@
 export {data}; 
 
 import { PageContext } from "vike/types";
-
 import type { ApodType } from "../../type/data";
 
 async function data(pageContext:PageContext){
