@@ -8,7 +8,7 @@ import TextTile from "../../components/tile/TextTile";
 export default function Apod() {
     const { apod } = useData<Data>();
     return (<>
-        <TitleH2 color="emerald" text="Astronomic Picture of the Day" />
+        <TitleH2 color="emerald" intensity='500' text="Astronomic Picture of the Day" />
         <TitleH3 color="emerald" text={apod.title} />
         <div class='flex flex-row gap-4 '>
             <img class='max-w-lg border-1 border-emerald-500' src={apod.url} >{apod.title}</img>

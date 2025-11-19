@@ -19,7 +19,7 @@ export default function Page() {
 
     return (
         <>
-            <TitleH2 color='emerald' text='Acceuil' />
+            <TitleH2 color='emerald' text='Acceuil' intensity='500'/>
             <div class='flex gap-4'>
                 <div class='flex flex-col gap-4'>
                     <TextTile>
