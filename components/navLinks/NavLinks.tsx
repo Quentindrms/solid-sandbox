@@ -11,8 +11,8 @@ export default function NavLinks() {
             link: '/form',
         },
         {
-            name: 'APOD',
-            link: '/apod',
+            name: 'Lien 2',
+            link: '#',
         },
         {
             name: 'To do list',
