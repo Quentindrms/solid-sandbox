@@ -8,3 +8,9 @@ export type ApodType = {
     title: string,
     url: string,
 }
+
+export type TaskType = {
+    name: string,
+    value: string,
+    isFinished: boolean,
+}

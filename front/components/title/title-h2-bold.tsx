@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 type TitleH2Props = {
     color: AvailaibleColor;
-    intensity: ColorIntensity;
+    intensity?: ColorIntensity;
     text: string;
 }
 

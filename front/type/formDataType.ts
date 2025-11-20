@@ -1,4 +1,3 @@
-
 export type HelloFormDataType = {
     nom: string,
     prenom: string,

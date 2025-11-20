@@ -1,7 +1,7 @@
 type FormInputProps = {
     name: string,
     text: string,
-    onClick: (e:Event) => void,
+    onClick?: (e:Event) => void,
 }
 
 export function FormInputSubmit({name, text, onClick}:FormInputProps){
