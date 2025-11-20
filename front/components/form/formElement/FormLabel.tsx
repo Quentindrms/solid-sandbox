@@ -4,5 +4,5 @@ type FormLabelProps = {
 }
 
 export function FormLabel({text, htmlFor}:FormLabelProps){
-    return <label class='' id='formLabel' for={htmlFor}>{text}</label>
+    return <label class='text-lg font-medium underline' id='formLabel' for={htmlFor}>{text}</label>
 }

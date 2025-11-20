@@ -26,10 +26,10 @@ export default function Page() {
                         <LoremIpsumShort />
                     </TextTile>
                     <TitleH3 color='emerald' text='Lorem ipsum' />
-                    <ElementsTile gap={10} flexDirection='row'>
+                    <ElementsTile gap={5} flexDirection='row'>
                         <PrimaryButton color='green' text='Hello world' onClick={() => setCount(count() + 1)} />
-                        <Show when={count()} fallback='Cliquez sur le bouton'>
-                            <p class="text-teal-400">Nombre de 'Hello world' : {count()}</p>
+                        <Show when={count()} fallback={<p class="text-green-800 font-medium m-2">Cliquez sur le bouton</p>}>
+                            <p class="text-green-800 font-medium m-2">Nombre de 'Hello world' : {count()}</p>
                         </Show>
                     </ElementsTile>
                 </div>

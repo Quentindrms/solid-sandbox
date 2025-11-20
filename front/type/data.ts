@@ -12,5 +12,6 @@ export type ApodType = {
 export type TaskType = {
     name: string,
     value: string,
+    description: string,
     isFinished: boolean,
 }
