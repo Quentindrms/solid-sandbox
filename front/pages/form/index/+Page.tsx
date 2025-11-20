@@ -6,7 +6,7 @@ export default function Form(){
 
     return(
     <>
-        <TitleH2 color="emerald" text="Hello form !"/>
+        <TitleH2 color="emerald" text="Hello form !" intensity="500"/>
         <HelloForm />
     </>
     )

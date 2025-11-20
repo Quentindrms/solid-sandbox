@@ -1,7 +1,7 @@
 import '../tailwind.css';
 
 
-import { createEffect, createSignal } from 'solid-js';
+import { createEffect, createSignal, Show } from 'solid-js';
 import TitleH2 from '../../components/title/title-h2-bold';
 import PrimaryButton from '../../components/button/PrimaryButton';
 
@@ -19,16 +19,18 @@ export default function Page() {
 
     return (
         <>
-            <TitleH2 color='emerald' text='Acceuil' intensity='500'/>
+            <TitleH2 color='emerald' text='Acceuil' intensity='500' />
             <div class='flex gap-4'>
                 <div class='flex flex-col gap-4'>
                     <TextTile>
                         <LoremIpsumShort />
                     </TextTile>
-                    <TitleH3 color='emerald' text='Lorem ipsum'/>
+                    <TitleH3 color='emerald' text='Lorem ipsum' />
                     <ElementsTile gap={10} flexDirection='row'>
                         <PrimaryButton color='green' text='Hello world' onClick={() => setCount(count() + 1)} />
-                        <p class="text-teal-400">Nombre de 'Hello world' : {count()}</p>
+                        <Show when={count()} fallback='Cliquez sur le bouton'>
+                            <p class="text-teal-400">Nombre de 'Hello world' : {count()}</p>
+                        </Show>
                     </ElementsTile>
                 </div>
                 <TextTile>
