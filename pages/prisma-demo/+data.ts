@@ -1,4 +1,3 @@
-import { UserType } from "../../type/users/usersType";
 
 export type Data = Awaited<ReturnType<typeof data>>;
 
@@ -7,5 +6,11 @@ export default async function data() {
     const data = await response.json();
 
     return data;
+}
+
+export async function changeStatus(id: number, status: boolean){
+    const response = await fetch(`http://localhost:3005/users/change-user-status/${id}/${status}`);
+    const data = await response.json();
+    console.log(data);
 }
 

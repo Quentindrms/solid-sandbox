@@ -2,15 +2,21 @@ import { createEffect, createSignal, For, Show, Suspense } from "solid-js";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import TitleH2 from "../../components/title/title-h2-bold";
 import { useData } from "vike-solid/useData";
-import { Data } from "./+data";
+import { changeStatus} from "./+data";
+import data from "./+data";
 import { UserType } from "../../type/users/usersType";
 import ElementsTile from "../../components/tile/ElementsTile";
 import clsx from "clsx";
+import { reload } from "vike/client/router";
 
 
 export default function PrismaDemo() {
 
     const fetchedData = useData<{ result: UserType[] }>();
+
+    createEffect(() => {
+        console.log('Modification sur data', data());
+    })
 
     const [focusUser, setFocusUser] = createSignal<UserType>({
         utilisateur_id: 0,
@@ -23,18 +29,25 @@ export default function PrismaDemo() {
         role_id: 0,
     })
 
+    const [data, setData] = createSignal(fetchedData.result);
+
     function handleClick(id: number) {
         setFocusUser(fetchedData.result?.[id])
-        console.log(fetchedData.result);
     }
 
-    function handleUserToggle() {
-        setFocusUser((prev) => {
+    async function handleUserToggle() {
+        const newData = setFocusUser((prev) => {
             return {
                 ...prev,
                 est_actif: !prev.est_actif
             }
         })
+        await changeStatus(newData.utilisateur_id, newData.est_actif);
+        await reload();
+    }
+
+    function handleToggleButtonClick(){
+        handleUserToggle();
     }
 
     function parseDate(input: string) {
@@ -50,9 +63,9 @@ export default function PrismaDemo() {
             <div class='flex flex-row gap-4'>
                 <ElementsTile flexDirection="col" gap={2}>
                     <Suspense fallback='Chargement des données'>
-                        <For each={fetchedData?.result}>
+                        <For each={data()}>
                             {(item, index) => (
-                                <div class='border-gray-200 border-2 rounded-md p-3' onClick={() => handleClick((index()))}>
+                                <div class='border-gray-200 border-2 rounded-md p-3' onClick={() => handleClick(index())}>
                                     <p class='font-bold'>Utilisateur numéro : {item.utilisateur_id} </p>
                                     <p>{item.nom} {item.prenom}</p>
                                     <p class='italic'>{item.email}</p>
@@ -71,7 +84,7 @@ export default function PrismaDemo() {
                         <p>Est actif : {focusUser().est_actif ? 'Oui' : 'Non'}</p>
                         <p>Date de création : {parseDate(focusUser().date_creation)}</p>
                         <div class='flex justify-center p-2'>
-                            <PrimaryButton color="green" text={focusUser().est_actif ? "Désactiver l'utilisateur" : "Activer l'utilisateur"} onClick={handleUserToggle} />
+                            <PrimaryButton color="green" text={focusUser().est_actif ? "Désactiver l'utilisateur" : "Activer l'utilisateur"} onClick={() => handleToggleButtonClick()} />
                         </div>
                     </Show>
                 </ElementsTile>

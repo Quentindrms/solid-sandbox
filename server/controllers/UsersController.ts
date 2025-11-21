@@ -4,7 +4,11 @@ import prisma from "../database/Prisma";
 export class UsersController extends Controller {
 
     async getAllUsers() {
-        const result = await prisma.utilisateurs.findMany();
+        const result = await prisma.utilisateurs.findMany({
+            orderBy: {
+                utilisateur_id: 'asc',
+            }
+        });
         this.response.json({ result });
     }
 
@@ -14,10 +18,10 @@ export class UsersController extends Controller {
                 email: true,
             }
         })
-        this.response.json({result});
+        this.response.json({ result });
     }
 
-    async getAllUsersIdentity(){
+    async getAllUsersIdentity() {
         const result = await prisma.utilisateurs.findMany({
             select: {
                 nom: true,
@@ -26,20 +30,33 @@ export class UsersController extends Controller {
                 est_actif: true,
             }
         })
-        this.response.json({result});
+        this.response.json({ result });
     }
 
-    async getIdentityByEmail(email: string){
+    async getIdentityByEmail(email: string) {
         console.log('email : ', email)
         const result = await prisma.utilisateurs.findUnique({
-            where : {
-                email : email,
+            where: {
+                email: email,
             },
-            select : {
+            select: {
                 nom: true,
                 prenom: true,
                 email: true,
                 est_actif: true,
+            }
+        })
+        this.response.json({ result });
+    }
+
+    async changeUserStatus(id: number, status: boolean) {
+        console.log('ID : ', id, 'Nouveaux status :', status);
+        const result = await prisma.utilisateurs.update({
+            where: {
+                utilisateur_id: id,
+            },
+            data: {
+                est_actif: status,
             }
         })
         this.response.json({result});

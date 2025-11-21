@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UsersController } from "../controllers/UsersController";
+import { parse } from "node:path";
 
 const usersRouter:Router = Router();
 
@@ -22,6 +23,13 @@ usersRouter.get('/get-all-identity', (request, response) => {
 usersRouter.get('/get-identity-by-email/:email', (request, response) => {
     const controller = new UsersController(request, response);
     controller.getIdentityByEmail(request.params.email);
+})
+
+usersRouter.get('/change-user-status/:id/:status', (request, response) =>{
+    const id = request.params.id
+    const status = request.params.status === 'true' ? true : false;
+    const controller = new UsersController(request, response);
+    controller.changeUserStatus(parseInt(id, 10), status);
 })
 
 export default usersRouter;
