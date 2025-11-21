@@ -1,10 +1,47 @@
 import { Controller } from "../libs/Controller";
 import prisma from "../database/Prisma";
 
-export class UsersController extends Controller{
+export class UsersController extends Controller {
 
-    async getAllUsers(){
+    async getAllUsers() {
         const result = await prisma.utilisateurs.findMany();
+        this.response.json({ result });
+    }
+
+    async getAllUsersMail() {
+        const result = await prisma.utilisateurs.findMany({
+            select: {
+                email: true,
+            }
+        })
+        this.response.json({result});
+    }
+
+    async getAllUsersIdentity(){
+        const result = await prisma.utilisateurs.findMany({
+            select: {
+                nom: true,
+                prenom: true,
+                email: true,
+                est_actif: true,
+            }
+        })
+        this.response.json({result});
+    }
+
+    async getIdentityByEmail(email: string){
+        console.log('email : ', email)
+        const result = await prisma.utilisateurs.findUnique({
+            where : {
+                email : email,
+            },
+            select : {
+                nom: true,
+                prenom: true,
+                email: true,
+                est_actif: true,
+            }
+        })
         this.response.json({result});
     }
 

@@ -2,7 +2,7 @@
 type PrimaryButtonProps = {
     text: string,
     color: 'yellow' | 'green' | 'sky' | 'blue' | 'purple',
-    onClick?: (e:Event) => void;
+    onClick?: (e:Event) => void | (() => void);
 }
 
 export function PrimaryButton({text, color, onClick}:PrimaryButtonProps){

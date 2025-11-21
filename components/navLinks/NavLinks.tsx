@@ -19,8 +19,8 @@ export default function NavLinks() {
             link: '/to-do',
         },
         {
-            name: 'Lien 4',
-            link: '#',
+            name: 'Prisma demo',
+            link: '/prisma-demo',
         },
         {
             name: 'Lien 5',
