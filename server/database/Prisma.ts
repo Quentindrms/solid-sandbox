@@ -1,17 +1,19 @@
-import { PrismaClient } from '../generated/prisma/client'
+import 'dotenv/config';
+import { PrismaClient } from '../generated/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
-const createPrisma = (prisma: PrismaClient) => {
-    return new PrismaClient();
-}
+class Prisma {
 
-export type PrismaInstance = ReturnType<typeof createPrisma>;
+    private static instance: PrismaClient;
 
-class Prisma{
-    private static instance: PrismaInstance;
-
-    public static getInstance(): PrismaInstance{
-        if(!Prisma.instance){
-            Prisma.instance = createPrisma(new PrismaClient({}));
+    public static getInstance(): PrismaClient {
+        const connectionString = `${process.env.DATABASE_URL}` || undefined;
+        if (!Prisma.instance) {
+            const adapter = new PrismaPg({ connectionString })
+            Prisma.instance = new PrismaClient({
+                adapter: adapter,
+            },
+        );
         }
         return Prisma.instance;
     }
