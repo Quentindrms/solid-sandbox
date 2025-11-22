@@ -3,11 +3,12 @@ type FormInputProps = {
     type: 'text' | 'email',
     onChange: (e: Event) => void,
     require: true | false,
+    value?: string,
 }
 
-export function FormInput({name, type, onChange, require}:FormInputProps){
+export function FormInput({name, type, onChange, require, value}:FormInputProps){
     if(require){
-    return(<input required class={`${name} border-1 border-teal-700 max-w-md`} type={type} id='' onChange={onChange} name={name}></input>)
+    return(<input required class={`${name} border-1 border-teal-700 max-w-md`} type={type} id='' onChange={onChange} name={name} value={value}></input>)
     }
     else{
     return(<input class={`${name} border-1 border-teal-700 max-w-md`} type={type} id='' onChange={onChange} name={name}></input>)

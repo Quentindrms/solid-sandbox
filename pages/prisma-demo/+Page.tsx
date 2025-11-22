@@ -2,7 +2,7 @@ import { createEffect, createSignal, For, Show, Suspense } from "solid-js";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import TitleH2 from "../../components/title/title-h2-bold";
 import { useData } from "vike-solid/useData";
-import { changeStatus } from "./+data";
+import { changeStatus, updateUser } from "./+data";
 import { UserType } from "../../type/users/usersType";
 import ElementsTile from "../../components/tile/ElementsTile";
 import { reload } from "vike/client/router";
@@ -11,7 +11,7 @@ import UpdateUserForm, { formDataType } from "../../components/form/UpdateUserFo
 
 export default function PrismaDemo() {
 
-    const fetchedData = useData<{ result: UserType[] }>();
+    const fetchedData = useData<UserType[]>();
 
     createEffect(() => {
         console.log('Modification sur data', data());
@@ -28,7 +28,7 @@ export default function PrismaDemo() {
         role_id: 0,
     })
 
-    const [data, setData] = createSignal(fetchedData.result);
+    const [data, setData] = createSignal(fetchedData);
     const [formOpen, setFormOpen] = createSignal(false);
     const [formData, setFormData] = createSignal<formDataType>({
         nom: '',
@@ -37,7 +37,8 @@ export default function PrismaDemo() {
     })
 
     function handleClick(id: number) {
-        setFocusUser(fetchedData.result?.[id])
+        setFocusUser(data()[id])
+        setFormOpen(false);
     }
 
     async function handleUserToggle() {
@@ -51,14 +52,29 @@ export default function PrismaDemo() {
         await reload();
     }
 
-    async function handleUserUpdate(updatedData: formDataType){
+    async function handleUserUpdate(updatedData: formDataType) {
         setFormData((prev) => {
-            return{
+            return {
                 ...prev,
                 ...updatedData,
             }
         })
-        console.log('Update : ',formData());
+        console.log('Update : ', formData());
+        try {
+            await updateUser(focusUser().utilisateur_id, formData().nom, formData().prenom, formData().email);
+        } catch {
+            console.error('Erreur lors de la mise à jour utilisateur');
+        }
+        finally {
+            const newFocusUser = setFocusUser((prev) => {
+                return {
+                    ...prev,
+                    ...updatedData
+                }
+            })
+            setFormOpen(!formOpen());
+            await reload();
+        }
     }
 
     function handleToggleButtonClick() {
@@ -115,7 +131,13 @@ export default function PrismaDemo() {
                     </ElementsTile>
                     <Show when={formOpen()}>
                         <ElementsTile flexDirection="col" gap={2}>
-                            <UpdateUserForm onSubmit={handleUserUpdate}/>
+                            <UpdateUserForm onSubmit={handleUserUpdate} initialData={
+                                {
+                                    nom: focusUser().nom,
+                                    prenom: focusUser().prenom,
+                                    email: focusUser().email,
+                                }
+                            } />
                         </ElementsTile>
                     </Show>
                 </div>

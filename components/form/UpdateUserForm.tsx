@@ -10,17 +10,17 @@ export type formDataType = {
 }
 
 type UpdateUserFormProps = {
-    initialData?: formDataType;
+    initialData: formDataType;
     onSubmit: (data: formDataType) => void;
 }
 
 export default function UpdateUserForm({ initialData, onSubmit }: UpdateUserFormProps) {
 
     const [formData, setFormData] = createSignal<formDataType>({
-        nom: '',
-        prenom: '',
-        email: ''
-    });
+        nom: initialData.nom,
+        prenom: initialData.prenom,
+        email: initialData.email,
+    })
 
     const handleInputChange = (field: keyof formDataType) => (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -38,13 +38,13 @@ export default function UpdateUserForm({ initialData, onSubmit }: UpdateUserForm
 
     return (
         <>
-            <form class='flex flex-col' onSubmit={(e: Event) => handleSubmit(e)}>
+            <form class='flex flex-col gap-1' onSubmit={(e: Event) => handleSubmit(e)}>
                 <FormLabel text="Nom"></FormLabel>
-                <FormInput name="nom" onChange={handleInputChange("nom")} require type="text" />
+                <FormInput name="nom" onChange={handleInputChange("nom")} require type="text" value={formData().nom}/>
                 <FormLabel text="Prénom"></FormLabel>
-                <FormInput name="prenom" onChange={handleInputChange("prenom")} require type="text" />
+                <FormInput name="prenom" onChange={handleInputChange("prenom")} require type="text" value={formData().prenom} />
                 <FormLabel text="Email"></FormLabel>
-                <FormInput name="email" onChange={handleInputChange("email")} require type="email" />
+                <FormInput name="email" onChange={handleInputChange("email")} require type="email" value={formData().email} />
                 <FormInputSubmit name="submit" text="Enregistrer les modifications" />
             </form>
         </>)

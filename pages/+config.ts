@@ -11,4 +11,6 @@ export default {
   prerender: true,
 
   extends: [vikeSolid],
+  ssr: false,
+  clientRouting: true,
 } satisfies Config;

@@ -9,7 +9,7 @@ export class UsersController extends Controller {
                 utilisateur_id: 'asc',
             }
         });
-        this.response.json({ result });
+        this.response.json(result);
     }
 
     async getAllUsersMail() {
