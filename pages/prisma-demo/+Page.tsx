@@ -94,8 +94,6 @@ export default function PrismaDemo() {
 
     return (
         <>
-            <TitleH2 color="emerald" text="Prisma démo" />
-
             <div class='flex flex-row gap-4'>
                 <ElementsTile flexDirection="col" gap={2}>
                     <Suspense fallback='Chargement des données'>

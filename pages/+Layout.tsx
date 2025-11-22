@@ -24,9 +24,7 @@ function Sidebar() {
 function Content(props: { children: JSX.Element }) {
     return (
         <div class='flex-1 overflow-auto'>
-            <div class='p-6'>
                 {props.children}
-            </div>
         </div>
     )
 }

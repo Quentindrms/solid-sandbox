@@ -22,18 +22,6 @@ export default function NavLinks() {
             name: 'Prisma demo',
             link: '/prisma-demo',
         },
-        {
-            name: 'Lien 5',
-            link: '#',
-        },
-        {
-            name: 'Lien 6',
-            link: '#',
-        },
-        {
-            name: 'Lien 7',
-            link: '#',
-        }
     ]
 
     return (
@@ -46,12 +34,37 @@ export default function NavLinks() {
                         </div>
                     )
                 }
-                else {return(
-                    <div class='bg-zinc-50 w-full text-center p-1'>
-                        <a class='text-4xl' href={link.link}>{link.name}</a>
-                    </div>
-                )
+                else {
+                    return (
+                        <div class='bg-zinc-50 w-full text-center p-1'>
+                            <a class='text-4xl' href={link.link}>{link.name}</a>
+                        </div>
+                    )
                 }
             })}
         </>)
+}
+
+export function NavPrismaDemo() {
+    let linkList: linkList[] = [
+        {
+            name: 'Utilisateurs',
+            link: '/form',
+        },
+        {
+            name: 'Commandes',
+            link: '/apod',
+        },
+        {
+            name: 'Catégories',
+            link: '/to-do',
+        },
+    ]
+    return(
+        <div class='flex gap-2 text-center'>
+            {linkList.map((item) => (
+                <a href={item.link} class='text-2xl hover:text-orange-500'>{item.name}</a>
+            ))}
+        </div>
+    )
 }
