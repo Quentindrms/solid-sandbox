@@ -32,4 +32,14 @@ usersRouter.get('/change-user-status/:id/:status', (request, response) =>{
     controller.changeUserStatus(parseInt(id, 10), status);
 })
 
+usersRouter.get('/update-user/:id/:nom/:prenom/:email', (request, response) => {
+    const id = parseInt(request.params.id);
+    const nom = request.params.nom;
+    const prenom = request.params.prenom;
+    const email = request.params.email;
+
+    const controller = new UsersController(request, response);
+    controller.updateUser(id, nom, prenom, email)
+})
+
 export default usersRouter;

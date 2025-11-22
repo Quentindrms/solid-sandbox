@@ -2,12 +2,11 @@ import { createEffect, createSignal, For, Show, Suspense } from "solid-js";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import TitleH2 from "../../components/title/title-h2-bold";
 import { useData } from "vike-solid/useData";
-import { changeStatus} from "./+data";
-import data from "./+data";
+import { changeStatus } from "./+data";
 import { UserType } from "../../type/users/usersType";
 import ElementsTile from "../../components/tile/ElementsTile";
-import clsx from "clsx";
 import { reload } from "vike/client/router";
+import UpdateUserForm, { formDataType } from "../../components/form/UpdateUserForm";
 
 
 export default function PrismaDemo() {
@@ -30,6 +29,12 @@ export default function PrismaDemo() {
     })
 
     const [data, setData] = createSignal(fetchedData.result);
+    const [formOpen, setFormOpen] = createSignal(false);
+    const [formData, setFormData] = createSignal<formDataType>({
+        nom: '',
+        prenom: '',
+        email: '',
+    })
 
     function handleClick(id: number) {
         setFocusUser(fetchedData.result?.[id])
@@ -46,7 +51,17 @@ export default function PrismaDemo() {
         await reload();
     }
 
-    function handleToggleButtonClick(){
+    async function handleUserUpdate(updatedData: formDataType){
+        setFormData((prev) => {
+            return{
+                ...prev,
+                ...updatedData,
+            }
+        })
+        console.log('Update : ',formData());
+    }
+
+    function handleToggleButtonClick() {
         handleUserToggle();
     }
 
@@ -54,6 +69,11 @@ export default function PrismaDemo() {
         const date = new Date(input)
         const output = date.toLocaleDateString();
         return output
+    }
+
+    function handleUpdateForm() {
+        setFormOpen(!formOpen());
+        console.log('formOpen :', formOpen())
     }
 
     return (
@@ -75,19 +95,30 @@ export default function PrismaDemo() {
                     </Suspense>
                 </ElementsTile>
 
-                <ElementsTile flexDirection="col" gap={2}>
-                    <Show when={focusUser().utilisateur_id} fallback={'Cliquez sur un utilisateur pour afficher les détails'}>
-                        <p class="text-center font-bold text-xl text-emerald-700">{focusUser().prenom} {focusUser().nom}</p>
-                        <p>Nom : {focusUser().nom}</p>
-                        <p>Penom : {focusUser().prenom}</p>
-                        <p>Email: {focusUser().email}</p>
-                        <p>Est actif : {focusUser().est_actif ? 'Oui' : 'Non'}</p>
-                        <p>Date de création : {parseDate(focusUser().date_creation)}</p>
-                        <div class='flex justify-center p-2'>
-                            <PrimaryButton color="green" text={focusUser().est_actif ? "Désactiver l'utilisateur" : "Activer l'utilisateur"} onClick={() => handleToggleButtonClick()} />
-                        </div>
+                <div class='flex flex-col gap-2'>
+                    <ElementsTile flexDirection="col" gap={2}>
+                        <Show when={focusUser().utilisateur_id} fallback={'Cliquez sur un utilisateur pour afficher les détails'}>
+                            <p class="text-center font-bold text-xl text-emerald-700">{focusUser().prenom} {focusUser().nom}</p>
+                            <p>Nom : {focusUser().nom}</p>
+                            <p>Penom : {focusUser().prenom}</p>
+                            <p>Email: {focusUser().email}</p>
+                            <p>Est actif : {focusUser().est_actif ? 'Oui' : 'Non'}</p>
+                            <p>Date de création : {parseDate(focusUser().date_creation)}</p>
+                            <div class='flex justify-center p-2 gap-2'>
+                                <PrimaryButton
+                                    color="green" text={focusUser().est_actif ? "Désactiver l'utilisateur" : "Activer l'utilisateur"}
+                                    onClick={() => handleToggleButtonClick()}
+                                />
+                                <PrimaryButton color="green" text={"Modifier l'utilisateur"} onClick={() => handleUpdateForm()} />
+                            </div>
+                        </Show>
+                    </ElementsTile>
+                    <Show when={formOpen()}>
+                        <ElementsTile flexDirection="col" gap={2}>
+                            <UpdateUserForm onSubmit={handleUserUpdate}/>
+                        </ElementsTile>
                     </Show>
-                </ElementsTile>
+                </div>
             </div >
         </>)
 }

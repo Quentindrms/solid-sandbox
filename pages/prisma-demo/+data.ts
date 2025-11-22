@@ -14,3 +14,7 @@ export async function changeStatus(id: number, status: boolean){
     console.log(data);
 }
 
+export async function updateUser(id: number, nom: string, prenom: string, email: string){
+    
+}
+

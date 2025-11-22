@@ -62,4 +62,20 @@ export class UsersController extends Controller {
         this.response.json({result});
     }
 
+    async updateUser(id: number, nom: string, prenom: string, email: string){
+        console.log('Modification utilisateur n°', id);
+        const result = await prisma.utilisateurs.update({
+            where:{
+                utilisateur_id: id
+            },
+            data:{
+                nom: nom,
+                prenom: prenom,
+                email: email,
+            }
+        })
+        console.log(result);
+        this.response.json(result);
+    }
+
 }

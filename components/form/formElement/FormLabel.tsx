@@ -1,6 +1,6 @@
 type FormLabelProps = {
     text: string,
-    htmlFor: string,
+    htmlFor?: string,
 }
 
 export function FormLabel({text, htmlFor}:FormLabelProps){
