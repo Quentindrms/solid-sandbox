@@ -8,17 +8,14 @@ export class CommandesControllers extends Controller{
         const result = await prisma.commandes.findMany({
             where:{
                 commande_id: {
-                    gte: commandesCount-5,
+                    gt: commandesCount-5,
                 },
                 statut: {
-                    equals: 'en cours',
+                    equals: 'en attente',
                 }
-            },
-            select:{
-                
-                date_commande: true,
             }
         })
+        this.response.json(result);
     }
 
 }

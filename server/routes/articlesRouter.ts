@@ -14,8 +14,9 @@ articlesRouter.get('/count-low-quantity', (request, response) =>{
 })
 
 articlesRouter.get('/article-details/:id', (request, response) => {
+    console.log('id: ', request.params.id);
     const articleController = new ArticlesController(request, response);
-    articleController.getArticleDetails(parseInt(request.params.id));
+    articleController.getArticleDetails(parseInt(request.params.id, 10));
 })
 
 export default articlesRouter;

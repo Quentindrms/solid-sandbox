@@ -20,6 +20,7 @@ export class ArticlesController extends Controller{
     }
 
     async getArticleDetails(id:number){
+        console.log('id : ', id)
         const result = await prisma.articles.findFirst({
             where:{
                 article_id:{
