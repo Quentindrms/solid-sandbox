@@ -13,7 +13,7 @@ export default function PrismaDemo() {
         <>
             <TitleH3 color="green" text="Tableau de bord" />
             <UsersTilesCount activeUsers={fetchedData.activeUserCount} users={fetchedData.userCount} />
-            <ArticlesTile quantity={0}/>
+            <ArticlesTile quantity={fetchedData.lowQuantityCount} totalArticle={fetchedData.articlesCount}/>
         </>
         )
 }

@@ -56,6 +56,10 @@ export function NavPrismaDemo() {
             link: '/commandes',
         },
         {
+            name: 'Articles',
+            link: '/articles', 
+        },
+        {
             name: 'Catégories',
             link: '/prisma-demo/categories',
         },
