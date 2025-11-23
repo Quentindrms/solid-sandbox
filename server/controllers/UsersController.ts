@@ -12,6 +12,12 @@ export class UsersController extends Controller {
         this.response.json(result);
     }
 
+    async getUsersCount(){
+        const result = await prisma.utilisateurs.count();
+        this.response.json(result);
+        console.log('User count : ', result);
+    }
+
     async getAllUsersMail() {
         const result = await prisma.utilisateurs.findMany({
             select: {

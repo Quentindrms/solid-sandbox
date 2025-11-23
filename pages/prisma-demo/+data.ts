@@ -1,26 +1,23 @@
+import { fetcher } from "../../store/fetch/Fetcher";
+import type { fetcherParameters } from "../../store/fetch/Fetcher";
 
-export type Data = Awaited<ReturnType<typeof data>>;
+export type Data = {
+    userCount: number,
+};
 
-export default async function data() {
-    const response = await fetch('http://localhost:3005/users/get-all-users');
-    const data = await response.json();
-    console.log('Data ', data)
-    return data;
-}
-export async function updateData() {
-    const response = await fetch('http://localhost:3005/users/get-all-users');
-    const data = await response.json();
+export default async function data(){
 
-    return data;
-}
-
-export async function changeStatus(id: number, status: boolean){
-    const response = await fetch(`http://localhost:3005/users/change-user-status/${id}/${status}`);
-    const data = await response.json();
+    const data: Data = {
+        userCount: await getUserCount(),
+    }
+    return data as Data;
 }
 
-export async function updateUser(id: number, nom: string, prenom: string, email: string){
-    const response = await fetch(`http://localhost:3005/users/update-user/${id}/${nom}/${prenom}/${email}`);
-    const data = await response.json();
+async function getUserCount(){
+    const info:fetcherParameters = {
+        road: "users",
+        endpoint: "count-users",
+    }
+    const result = await fetcher(info);
+    return result; 
 }
-

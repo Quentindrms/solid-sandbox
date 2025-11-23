@@ -49,21 +49,21 @@ export function NavPrismaDemo() {
     let linkList: linkList[] = [
         {
             name: 'Utilisateurs',
-            link: '/form',
+            link: '/prisma-demo/utilisateurs',
         },
         {
             name: 'Commandes',
-            link: '/apod',
+            link: '/commandes',
         },
         {
             name: 'Catégories',
-            link: '/to-do',
+            link: '/prisma-demo/categories',
         },
     ]
     return(
         <div class='flex gap-2 text-center'>
             {linkList.map((item) => (
-                <a href={item.link} class='text-2xl hover:text-orange-500'>{item.name}</a>
+                <a href={item.link} class='p-2 m-1 text-2xl hover:text-violet-500'>{item.name}</a>
             ))}
         </div>
     )

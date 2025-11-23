@@ -15,6 +15,11 @@ usersRouter.get('/get-all-email', (request, response) => {
     controller.getAllUsersMail();
 })
 
+usersRouter.get('/count-users', (request, response) => {
+    const controller = new UsersController(request, response);
+    controller.getUsersCount();
+})
+
 usersRouter.get('/get-all-identity', (request, response) => {
     const controller = new UsersController(request, response);
     controller.getAllUsersIdentity();

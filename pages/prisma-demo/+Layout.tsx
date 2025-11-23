@@ -5,7 +5,7 @@ import PrismaBrandName from "../../components/brandName/PrismaBrandName"
 
 export default function Layout(props: FlowProps) {
     return (<>
-        <div class='flex justify-between items-center gap-3 w-full bg-orange-100'>
+        <div class='flex justify-between items-center gap-3 w-full bg-stone-50'>
             <PrismaBrandName />
             <NavPrismaDemo />
         </div>
