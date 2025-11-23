@@ -2,6 +2,7 @@ import { useData } from "vike-solid/useData";
 import type { Data } from "./+data";
 import TitleH3 from "../../components/title/title-h3-bold";
 import UsersTilesCount from "../../components/prisma-demo/tiles/UsersTilesCount";
+import ArticlesTile from "../../components/prisma-demo/tiles/ArticlesTile";
 
 
 export default function PrismaDemo() {
@@ -11,7 +12,8 @@ export default function PrismaDemo() {
     return (
         <>
             <TitleH3 color="green" text="Tableau de bord" />
-            <UsersTilesCount data={fetchedData.userCount}/>
+            <UsersTilesCount activeUsers={fetchedData.activeUserCount} users={fetchedData.userCount} />
+            <ArticlesTile quantity={0}/>
         </>
         )
 }

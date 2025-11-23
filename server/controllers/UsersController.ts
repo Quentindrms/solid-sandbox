@@ -18,6 +18,17 @@ export class UsersController extends Controller {
         console.log('User count : ', result);
     }
 
+    async getCountActiveUsers(){
+        const result = await prisma.utilisateurs.count({
+            where: {
+                est_actif: {
+                    equals: true
+                }
+            }
+        })
+        this.response.json(result)
+    }
+
     async getAllUsersMail() {
         const result = await prisma.utilisateurs.findMany({
             select: {

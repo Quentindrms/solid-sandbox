@@ -20,6 +20,11 @@ usersRouter.get('/count-users', (request, response) => {
     controller.getUsersCount();
 })
 
+usersRouter.get('/count-active-users', (request, response) => {
+    const controller = new UsersController(request, response);
+    controller.getCountActiveUsers();
+})
+
 usersRouter.get('/get-all-identity', (request, response) => {
     const controller = new UsersController(request, response);
     controller.getAllUsersIdentity();
