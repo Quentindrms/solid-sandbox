@@ -32,6 +32,11 @@ export default function Page() {
                             <p class="text-green-800 font-medium m-2">Nombre de 'Hello world' : {count()}</p>
                         </Show>
                     </ElementsTile>
+                    <ElementsTile flexDirection='col' gap={2}>
+                        <TitleH3 text='Wall of buttons' color='emerald'/>
+                        <PrimaryButton color='sky' size='small' text='Oh mon bouton' fontWeight='bold'/>
+                        <PrimaryButton color='purple' text='Tu es le plus beau des boutons' />
+                    </ElementsTile>
                 </div>
                 <TextTile>
                     <LoremIpsumLong />
